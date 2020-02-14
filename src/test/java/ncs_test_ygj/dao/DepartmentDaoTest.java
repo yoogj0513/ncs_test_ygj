@@ -11,17 +11,18 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import ncs_test_ygj.dao.impl.TItleDaoImpl;
-import ncs_test_ygj.dto.Title;
+import ncs_test_ygj.dao.impl.DepartmentDaoImpl;
+import ncs_test_ygj.dto.Department;
 import ncs_test_ygj.util.LogUtil;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class TitleDaoTest {
-	static TitleDao dao;
+public class DepartmentDaoTest {
+	static DepartmentDao dao;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		LogUtil.prnLog(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		dao = TItleDaoImpl.getInstance();
+		dao = DepartmentDaoImpl.getInstance();
 	}
 
 	@AfterClass
@@ -42,50 +43,49 @@ public class TitleDaoTest {
 	}
 
 	@Test
-	public void test03SelectTitleByCode() {
+	public void test03SelectDepartmentByCode() {
 		LogUtil.prnLog(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Title t = dao.selectTitleByCode(new Title("T006"));
-		Assert.assertNotNull(t);
-		LogUtil.prnLog(t);
+		Department dept = dao.selectDepartmentByCode(new Department("D001"));
+		Assert.assertNotNull(dept);
+		LogUtil.prnLog(dept);
 	}
 
 	@Test
-	public void test02SelectTitleByAll() {
+	public void test02SelectDepartmentByAll() {
 		LogUtil.prnLog(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		List<Title> lists = dao.selectTitleByAll();
+		List<Department> lists = dao.selectDepartmentByAll();
 		Assert.assertNotNull(lists);
-		
-		for(Title t : lists) LogUtil.prnLog(t);
+		for(Department d : lists) LogUtil.prnLog(d);
 	}
 
 	@Test
-	public void test01InsertTitle() {
+	public void test01InsertDepartment() {
 		LogUtil.prnLog(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Title newTitle = new Title("T006", "인턴");
-		int res = dao.insertTitle(newTitle);
+		Department dept = new Department("D006", "회계", 5);
+		int res = dao.insertDepartment(dept);
 		Assert.assertEquals(1, res);
 		LogUtil.prnLog(res);
-		for(Title t : dao.selectTitleByAll()) LogUtil.prnLog(t);
+		for(Department d : dao.selectDepartmentByAll()) LogUtil.prnLog(d);
 	}
 
 	@Test
-	public void test04UpdateTitle() {
+	public void test04UpdateDepartment() {
 		LogUtil.prnLog(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Title newTitle = new Title("T006", "무기계약직");
-		int res = dao.updateTitle(newTitle);
+		Department dept = new Department("D006", "영업", 8);
+		int res = dao.updateDepartment(dept);
 		Assert.assertEquals(1, res);
 		LogUtil.prnLog(res);
-		for(Title t : dao.selectTitleByAll()) LogUtil.prnLog(t);
+		for(Department d : dao.selectDepartmentByAll()) LogUtil.prnLog(d);
 	}
 
 	@Test
-	public void test05DeleteTitle() {
+	public void test05DeleteDepartment() {
 		LogUtil.prnLog(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
-		Title newTitle = new Title("T006");
-		int res = dao.deleteTitle(newTitle);
+		Department dept = new Department("D006");
+		int res = dao.deleteDepartment(dept);
 		Assert.assertEquals(1, res);
 		LogUtil.prnLog(res);
-		for(Title t : dao.selectTitleByAll()) LogUtil.prnLog(t);
+		for(Department d : dao.selectDepartmentByAll()) LogUtil.prnLog(d);
 	}
 
 }

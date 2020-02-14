@@ -45,12 +45,14 @@ public class TItleDaoImpl implements TitleDao {
 		try(Connection con = MysqlDataSource.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				ResultSet rs = pstmt.executeQuery()){
-			List<Title> list = new ArrayList<>();
 			LogUtil.prnLog(pstmt);
-			while(rs.next()) {
-				list.add(getTitle(rs));
+			if(rs.next()) {
+				List<Title> list = new ArrayList<>();
+				do {
+					list.add(getTitle(rs));					
+				} while (rs.next());
+				return list;
 			}
-			return list;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
