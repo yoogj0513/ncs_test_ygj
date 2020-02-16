@@ -11,4 +11,5 @@ public interface DepartmentDao {
 	int insertDepartment(Department dept);
 	int updateDepartment(Department dept);
 	int deleteDepartment(Department dept);
+	String selectDepartmentLastCode();
 }

@@ -38,6 +38,22 @@ public class TItleDaoImpl implements TitleDao {
 		}
 		return null;
 	}
+	
+	@Override
+	public String selectTitleLastCode() {
+		String sql = "select max(title_no) from title";
+		try(Connection con = MysqlDataSource.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			LogUtil.prnLog(pstmt);
+			if(rs.next()) {
+				return rs.getString("max(title_no)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	@Override
 	public List<Title> selectTitleByAll() {

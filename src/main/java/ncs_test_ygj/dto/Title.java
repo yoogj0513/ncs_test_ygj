@@ -4,9 +4,7 @@ public class Title {
 	private String titleNo;
 	private String titleName;
 
-	public Title() {
-		// TODO Auto-generated constructor stub
-	}
+	public Title() {}
 	
 	public Title(String titleNo) {
 		this.titleNo = titleNo;
@@ -60,6 +58,6 @@ public class Title {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s", titleNo, titleName);
+		return String.format("%s", titleName);
 	}
 }

@@ -35,4 +35,15 @@ insert into employee values("E017006", "가사원", "T005", 2500000, 1, "D003", 
 update employee 
 	set emp_name = "다사원", title = "T004", salary = 3000000, gender = 1, dno = "D004", hire_date = '2017-05-01'
 	where emp_no = "E017006";
-delete from employee where emp_no = "E017006";
+delete from employee where emp_no = "E020006";
+
+select e.emp_no , e.emp_name, t.title_no , t.title_name as title, e.salary , e.gender ,
+		d.dept_no , d.dept_name as deptName, d.floor as floor, e.hire_date 
+	from employee e left join title t on e.title = t.title_no left join department d on e.dno = d.dept_no;
+	
+-- select
+
+select max(dept_no) from department;
+select max(title_no) from title; 
+
+select count(emp_no) from employee where emp_no like '%17%';

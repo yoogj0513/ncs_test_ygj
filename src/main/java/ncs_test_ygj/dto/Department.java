@@ -6,7 +6,6 @@ public class Department {
 	private int floor;
 
 	public Department() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Department(String deptNo) {
@@ -70,7 +69,7 @@ public class Department {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s", deptNo, deptName, floor);
+		return String.format("%s(%d층)", deptName, floor);
 	}
-
+	
 }

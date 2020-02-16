@@ -45,6 +45,22 @@ public class DepartmentDaoImpl implements DepartmentDao {
 		int floor = rs.getInt("floor");
 		return new Department(deptNo, deptName, floor);
 	}
+	
+	@Override
+	public String selectDepartmentLastCode() {
+		String sql = "select max(dept_no) from department";
+		try(Connection con = MysqlDataSource.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				ResultSet rs = pstmt.executeQuery()){
+			LogUtil.prnLog(pstmt);
+			if(rs.next()) {
+				return rs.getString("max(dept_no)");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	@Override
 	public List<Department> selectDepartmentByAll() {

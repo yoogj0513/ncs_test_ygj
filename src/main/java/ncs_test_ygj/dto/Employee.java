@@ -11,9 +11,7 @@ public class Employee {
 	private Department dno;
 	private Date hireDate;
 
-	public Employee() {
-		// TODO Auto-generated constructor stub
-	}
+	public Employee() {}
 
 	public Employee(String empNo) {
 		this.empNo = empNo;

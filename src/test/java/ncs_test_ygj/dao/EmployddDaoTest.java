@@ -1,7 +1,5 @@
 package ncs_test_ygj.dao;
 
-import static org.junit.Assert.*;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +21,7 @@ import ncs_test_ygj.util.LogUtil;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmployddDaoTest {
-	static EmployddDao dao;
+	static EmployeeDao dao;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
