@@ -17,6 +17,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.text.JTextComponent;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -25,9 +26,13 @@ import ncs_test_ygj.dto.Employee;
 import ncs_test_ygj.dto.Title;
 import ncs_test_ygj.ui.exception.InvalidCheckException;
 import ncs_test_ygj.ui.service.EmployeeUiService;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
-public class EmployeePanel extends AbsItemPanel<Employee> {
+public class EmployeePanel extends AbsItemPanel<Employee> implements ActionListener {
 	private JTextField tfNo;
 	private JTextField tfName;
 	private JDateChooser tfHireDate;
@@ -41,6 +46,9 @@ public class EmployeePanel extends AbsItemPanel<Employee> {
 	
 	private static int lastNum;
 	private int lastCode;
+	private JPanel panel;
+	private JPanel pBtnNewNo;
+	private JButton btnNewNo;
 
 	public EmployeePanel() {
 		service = new EmployeeUiService();
@@ -118,6 +126,17 @@ public class EmployeePanel extends AbsItemPanel<Employee> {
 		tfHireDate = new JDateChooser(new Date(), "yyyy-MM-dd");
 		add(tfHireDate);
 		makeCode();
+		
+		panel = new JPanel();
+		add(panel);
+		
+		pBtnNewNo = new JPanel();
+		add(pBtnNewNo);
+		
+		btnNewNo = new JButton("번호 재설정");
+		btnNewNo.addActionListener(this);
+		pBtnNewNo.setLayout(new BorderLayout(0, 0));
+		pBtnNewNo.add(btnNewNo);
 	}
 
 	public void setService(EmployeeUiService service) {
@@ -171,17 +190,21 @@ public class EmployeePanel extends AbsItemPanel<Employee> {
 		};
 		cmbDept.setSelectedItem(item.getDno());
 		tfHireDate.setDate(item.getHireDate());
+		tfHireDate.setEnabled(false);
+		btnNewNo.setEnabled(false);
 	}
 
 	@Override
 	public void clearTf() {
-		makeCode();
 		tfName.setText("");
 		cmbTitle.setSelectedIndex(-1);
 		spSalary.setValue(1500000);
 		rdo1.setSelected(true);
 		cmbDept.setSelectedIndex(-1);
 		tfHireDate.setDate(new Date());
+		setCancelCode(tfHireDate.getDate());
+		tfHireDate.setEnabled(true);
+		btnNewNo.setEnabled(true);
 	}
 
 	@Override
@@ -202,10 +225,17 @@ public class EmployeePanel extends AbsItemPanel<Employee> {
 	public void reloadData() {
 		makeCode();
 	}
+	
+	public void setCancelCode(Date getYear) {
+		String getY = getYear+"";
+		String empNo = String.format("E0%s%s", getY.substring(getY.length()-2, getY.length()), String.format("%03d", lastNum));
+		tfNo.setText(empNo);
+	}
 
 	private void makeCode() {
 		String getYear = tfHireDate.getJCalendar().getYearChooser().getYear()+"";
 		String year = getYear.substring(getYear.length()-2, getYear.length());
+		System.out.println("year : " + year);
 		
 		lastCode = service.getLastCode("%"+ year +"%");
 		lastNum = 1 + lastCode;
@@ -213,5 +243,14 @@ public class EmployeePanel extends AbsItemPanel<Employee> {
 		String empNo = String.format("E0%s%s", year, String.format("%03d", lastNum));
 	
 		tfNo.setText(empNo);
+	}
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewNo) {
+			btnNewNoActionPerformed(e);
+		}
+	}
+	
+	protected void btnNewNoActionPerformed(ActionEvent e) {
+		reloadData();
 	}
 }

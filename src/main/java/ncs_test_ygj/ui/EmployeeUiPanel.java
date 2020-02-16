@@ -158,7 +158,6 @@ public class EmployeeUiPanel extends JPanel implements ActionListener {
 
 	protected void btnCancelActionPerformed(ActionEvent e) {
 		pEmpContent.clearTf();
-		pEmpContent.reloadData();
 		btnAdd.setText("추가");
 	}
 }

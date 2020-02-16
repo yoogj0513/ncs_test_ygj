@@ -76,7 +76,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	
 	protected void btnEmpActionPerformed(ActionEvent e) {
 		JFrame frame = new JFrame();
-		frame.setBounds(100, 100, 500, 450);
+		frame.setBounds(100, 100, 500, 550);
 		EmployeeUiPanel tp = new EmployeeUiPanel();
 		frame.getContentPane().add(tp);
 		frame.setVisible(true);
