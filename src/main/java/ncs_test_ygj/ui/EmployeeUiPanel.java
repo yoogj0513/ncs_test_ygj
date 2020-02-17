@@ -142,7 +142,7 @@ public class EmployeeUiPanel extends JPanel implements ActionListener {
 			pEmpContent.clearTf();
 			pEmpContent.setCode(1);
 			pEmpList.loadData(service.showEmployeeList());
-			JOptionPane.showMessageDialog(null, String.format("%s(%s)추가되었습니다.", newEmp.getEmpName(), newEmp.getEmpNo()));
+			JOptionPane.showMessageDialog(null, String.format("%s(%s) 추가되었습니다.", newEmp.getEmpName(), newEmp.getEmpNo()));
 		} catch (InvalidCheckException e1) {
 			JOptionPane.showMessageDialog(null, e1.getMessage());
 		} catch (Exception e1) {

@@ -17,6 +17,9 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JButton btnEmp;
 	private JButton btnDept;
 	private JButton btnTitle;
+	private JFrame frame1;
+	private JFrame frame2;
+	private JFrame frame3;
 
 	/**
 	 * Launch the application.
@@ -65,7 +68,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnTitle) {
 			btnTitleActionPerformed(e);
-		}
+		} 
 		if (e.getSource() == btnDept) {
 			btnDeptActionPerformed(e);
 		}
@@ -75,24 +78,54 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	protected void btnEmpActionPerformed(ActionEvent e) {
-		JFrame frame = new JFrame();
-		frame.setBounds(100, 100, 500, 550);
-		EmployeeUiPanel tp = new EmployeeUiPanel();
-		frame.getContentPane().add(tp);
-		frame.setVisible(true);
+		if(frame1 == null) {			
+			frame1 = new JFrame();
+			frame1.setBounds(100, 100, 500, 550);
+			frame1.setTitle("사원관리");
+			EmployeeUiPanel tp = new EmployeeUiPanel();
+			frame1.getContentPane().add(tp);
+			frame1.setVisible(true);		
+		} else {
+			if(frame1.isVisible()) {
+				return;
+			}
+			EmployeeUiPanel tp = new EmployeeUiPanel();
+			frame1.getContentPane().add(tp);
+			frame1.setVisible(true);
+		}
 	}
 	protected void btnDeptActionPerformed(ActionEvent e) {
-		JFrame frame = new JFrame();
-		frame.setBounds(100, 100, 400, 300);
-		DepartmentUiPanel tp = new DepartmentUiPanel();
-		frame.getContentPane().add(tp);
-		frame.setVisible(true);
+		if(frame2 == null) {			
+			frame2 = new JFrame();
+			frame2.setBounds(100, 100, 400, 300);
+			frame2.setTitle("부서관리");
+			DepartmentUiPanel tp = new DepartmentUiPanel();
+			frame2.getContentPane().add(tp);
+			frame2.setVisible(true);
+		} else {
+			if(frame2.isVisible()) {
+				return;
+			}
+			DepartmentUiPanel tp = new DepartmentUiPanel();
+			frame2.getContentPane().add(tp);
+			frame2.setVisible(true);
+		}
 	}
 	protected void btnTitleActionPerformed(ActionEvent e) {
-		JFrame frame = new JFrame();
-		frame.setBounds(100, 100, 400, 300);
-		TitleUiPanel tp = new TitleUiPanel();
-		frame.getContentPane().add(tp);
-		frame.setVisible(true);
+		if(frame3 == null) {			
+			frame3 = new JFrame();
+			frame3.setBounds(100, 100, 400, 300);
+			frame3.setTitle("직책관리");
+			TitleUiPanel tp = new TitleUiPanel();
+			frame3.getContentPane().add(tp);
+			frame3.setVisible(true);
+		} else {
+			if(frame3.isVisible()) {
+				return;
+			}
+			TitleUiPanel tp = new TitleUiPanel();
+			frame3.getContentPane().add(tp);
+			frame3.setVisible(true);
+		}
 	}
 }

@@ -1,14 +1,16 @@
 package ncs_test_ygj.ui.content;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,7 +19,6 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
-import javax.swing.text.JTextComponent;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -26,10 +27,6 @@ import ncs_test_ygj.dto.Employee;
 import ncs_test_ygj.dto.Title;
 import ncs_test_ygj.ui.exception.InvalidCheckException;
 import ncs_test_ygj.ui.service.EmployeeUiService;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.BorderLayout;
 
 @SuppressWarnings("serial")
 public class EmployeePanel extends AbsItemPanel<Employee> implements ActionListener {
@@ -148,13 +145,13 @@ public class EmployeePanel extends AbsItemPanel<Employee> implements ActionListe
 	public void setCmbDeptList(List<Department> deptList) {
 		DefaultComboBoxModel<Department> model = new DefaultComboBoxModel<>(new Vector<>(deptList));
 		cmbDept.setModel(model);
-		cmbDept.setSelectedIndex(-1);
+		cmbDept.setSelectedIndex(0);
 	}
 	
 	public void setCmbTitleList(List<Title> titleList) {
 		DefaultComboBoxModel<Title> model = new DefaultComboBoxModel<>(new Vector<>(titleList));
 		cmbTitle.setModel(model);
-		cmbTitle.setSelectedIndex(-1);
+		cmbTitle.setSelectedIndex(0);
 	}
 
 	@Override
@@ -197,10 +194,10 @@ public class EmployeePanel extends AbsItemPanel<Employee> implements ActionListe
 	@Override
 	public void clearTf() {
 		tfName.setText("");
-		cmbTitle.setSelectedIndex(-1);
+		cmbTitle.setSelectedIndex(0);
 		spSalary.setValue(1500000);
 		rdo1.setSelected(true);
-		cmbDept.setSelectedIndex(-1);
+		cmbDept.setSelectedIndex(0);
 		tfHireDate.setDate(new Date());
 		setCancelCode(tfHireDate.getDate());
 		tfHireDate.setEnabled(true);

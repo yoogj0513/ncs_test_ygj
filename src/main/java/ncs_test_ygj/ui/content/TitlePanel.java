@@ -8,7 +8,6 @@ import javax.swing.SwingConstants;
 
 import ncs_test_ygj.dto.Title;
 import ncs_test_ygj.ui.exception.InvalidCheckException;
-import ncs_test_ygj.ui.list.TitleTblPanel;
 import ncs_test_ygj.ui.service.TitleUiService;
 
 @SuppressWarnings("serial")
